@@ -1,3 +1,24 @@
 spring:
   application:
     name: inhomehub-api
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/inhomehub
+    username: postgres
+    password: 1707
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  flyway:
+    enabled: false
+    locations: classpath:db/migration
+
+server:
+  port: 8080
