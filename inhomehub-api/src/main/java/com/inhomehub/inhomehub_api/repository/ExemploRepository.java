@@ -1,4 +1,11 @@
 package com.inhomehub.inhomehub_api.repository;
 
-public class ExemploRepository {
+import com.inhomehub.inhomehub_api.entity.Exemplo;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.Optional;
+import java.util.UUID;
+
+public interface ExemploRepository extends JpaRepository<Exemplo, UUID> {
+    Optional<Exemplo> findByNome(String nome);
 }
