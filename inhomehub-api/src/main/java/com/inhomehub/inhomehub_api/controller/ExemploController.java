@@ -1,12 +1,22 @@
 package com.inhomehub.inhomehub_api.controller;
 
-
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.inhomehub.inhomehub_api.dto.ExemploDTO;
+import com.inhomehub.inhomehub_api.dto.response.ExemploResponseDTO;
+import com.inhomehub.inhomehub_api.service.ExemploService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/exemplo")
 public class ExemploController {
 
-    private final
+    @Autowired
+    private ExemploService exemploService;
+
+    @PostMapping("criar")
+    public ExemploResponseDTO criarExemplo(@RequestBody ExemploDTO exemploDTO){
+        return exemploService.criarExemplo(exemploDTO);
+    }
+
+
 }
