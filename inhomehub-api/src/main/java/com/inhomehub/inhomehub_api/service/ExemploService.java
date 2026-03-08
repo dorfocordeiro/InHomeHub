@@ -7,6 +7,7 @@ import com.inhomehub.inhomehub_api.repository.ExemploRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -28,6 +29,20 @@ public class ExemploService {
         exemplo.setId(UUID.randomUUID());
         exemploRepository.save(exemplo);
         return new ExemploResponseDTO(exemplo.getId(), exemplo.getNome());
+    }
+
+    public List<ExemploResponseDTO> listarTodos(){
+        List<Exemplo> exemplos = exemploRepository.findAll();
+        return exemplos.stream()
+                .map(exemplo -> new ExemploResponseDTO(exemplo.getId(), exemplo.getNome()))
+                .toList();
+    }
+
+    public List<ExemploResponseDTO> listarExemplo(String nome){
+        List<Exemplo> exemplos = exemploRepository.findByNomeContainingIgnoreCase(nome);
+        return exemplos.stream()
+                .map(exemplo -> new ExemploResponseDTO(exemplo.getId(), exemplo.getNome()))
+                .toList();
     }
 
 }
