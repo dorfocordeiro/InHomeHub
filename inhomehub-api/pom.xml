@@ -14,18 +14,6 @@
 	<name>inhomehub-api</name>
 	<description>InHomeHub API – Plataforma de governança digital para comunidades residenciais, focada em comunicação estruturada, votações oficiais, gestão de conflitos e histórico jurídico.</description>
 	<url/>
-	<licenses>
-		<license/>
-	</licenses>
-	<developers>
-		<developer/>
-	</developers>
-	<scm>
-		<connection/>
-		<developerConnection/>
-		<tag/>
-		<url/>
-	</scm>
 	<properties>
 		<java.version>21</java.version>
 	</properties>

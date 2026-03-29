@@ -3,8 +3,8 @@ spring:
     name: inhomehub-api
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/inhomehub
-    username: postgres
+    url: jdbc:postgresql://localhost:5432/inhomehub_db
+    username: inhomehub_admin
     password: 1707
     driver-class-name: org.postgresql.Driver
 

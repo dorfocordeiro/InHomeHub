@@ -8,6 +8,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface ExemploRepository extends JpaRepository<Exemplo, UUID> {
+
     Optional<Exemplo> findByNome(String nome);
 
     List<Exemplo> findByNomeContainingIgnoreCase(String nome);
