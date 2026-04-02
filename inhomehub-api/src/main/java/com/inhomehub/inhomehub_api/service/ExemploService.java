@@ -38,11 +38,25 @@ public class ExemploService {
                 .toList();
     }
 
-    public List<ExemploResponseDTO> listarExemplo(String nome){
-        List<Exemplo> exemplos = exemploRepository.findByNomeContainingIgnoreCase(nome);
-        return exemplos.stream()
-                .map(exemplo -> new ExemploResponseDTO(exemplo.getId(), exemplo.getNome()))
-                .toList();
+    public ExemploResponseDTO listarExemplo(String nome){
+
+        if (!exemploRepository.findByNome(nome).isPresent()) {
+            throw new IllegalArgumentException("Exemplo não encontrado com o nome: " + nome);
+        }
+        // Busca diretamente pelo nome exato, já que não pode haver duplicidade
+        Exemplo exemplo = exemploRepository.findByNome(nome)
+                .orElseThrow(() -> new IllegalArgumentException("Exemplo não encontrado com o nome: " + nome));
+        return new ExemploResponseDTO(exemplo.getId(), exemplo.getNome());
+    }
+
+
+    public ExemploResponseDTO excluir(String nome) {
+
+        if (exemploRepository.findByNome(nome).isEmpty()) {
+            throw new IllegalArgumentException("Exemplo não encontrado com o nome: " + nome);
+        }
+        exemploRepository.deleteByNome(nome);
+        return new ExemploResponseDTO(null, "Exemplo " + nome + " excluído com sucesso.");
     }
 
 }
