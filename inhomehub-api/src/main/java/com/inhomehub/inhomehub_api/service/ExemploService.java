@@ -13,8 +13,11 @@ import java.util.UUID;
 @Service
 public class ExemploService {
 
-    @Autowired
     private ExemploRepository exemploRepository;
+
+    public ExemploService(ExemploRepository exemploRepository){
+        this.exemploRepository = exemploRepository;
+    }
 
     public ExemploResponseDTO criarExemplo(ExemploDTO exemploDTO) {
         if (exemploDTO.nome() == null || exemploDTO.nome().isEmpty()) {
