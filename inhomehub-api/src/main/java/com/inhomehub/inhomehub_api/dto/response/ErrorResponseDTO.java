@@ -1,6 +1,6 @@
 package com.inhomehub.inhomehub_api.dto.response;
 
-
 public record ErrorResponseDTO(
-        String message
+        String message,
+        String code
 ) {}
