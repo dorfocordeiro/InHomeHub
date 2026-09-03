@@ -4,5 +4,6 @@ import java.util.UUID;
 
 public record ExemploResponseDTO(
         UUID id,
-        String nome
+        String nome,
+        boolean excluida
 ){}
