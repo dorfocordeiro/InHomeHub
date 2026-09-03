@@ -16,4 +16,7 @@ public class Exemplo {
 
     @Column(length = 255)
     private String nome;
+
+    @Column(name = "flg_excluida", nullable = false)
+    private boolean excluida;
 }
