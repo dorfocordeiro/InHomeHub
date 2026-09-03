@@ -30,6 +30,7 @@ public class ExemploService {
         Exemplo exemplo = new Exemplo();
         exemplo.setNome(exemploDTO.nome());
         exemplo.setId(UUID.randomUUID());
+        exemplo.setExcluida(Boolean.FALSE);
         exemploRepository.save(exemplo);
         return new ExemploResponseDTO(exemplo.getId(), exemplo.getNome());
     }
@@ -53,13 +54,21 @@ public class ExemploService {
     }
 
 
-    public ExemploResponseDTO excluir(String nome) {
+//    public ExemploResponseDTO excluir(String nome) {
+//
+//        if (exemploRepository.findByNome(nome).isEmpty()) {
+//            throw new IllegalArgumentException("Exemplo não encontrado com o nome: " + nome);
+//        }
+//        exemploRepository.deleteByNome(nome);
+//        return new ExemploResponseDTO(null, "Exemplo " + nome + " excluído com sucesso.");
+//    }
 
-        if (exemploRepository.findByNome(nome).isEmpty()) {
-            throw new IllegalArgumentException("Exemplo não encontrado com o nome: " + nome);
-        }
-        exemploRepository.deleteByNome(nome);
-        return new ExemploResponseDTO(null, "Exemplo " + nome + " excluído com sucesso.");
+    public ExemploResponseDTO excluir(String nome) {
+        Exemplo exemplo = exemploRepository.findByNome(nome)
+                .orElseThrow(() -> new IllegalArgumentException("Exemplo não encontrado com o nome: " + nome));
+        exemplo.setExcluida(true);
+        exemploRepository.save(exemplo);
+        return new ExemploResponseDTO(exemplo);
     }
 
 }
