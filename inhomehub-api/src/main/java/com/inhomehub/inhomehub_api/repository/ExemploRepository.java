@@ -10,6 +10,6 @@ public interface ExemploRepository extends JpaRepository<Exemplo, UUID> {
 
     Optional<Exemplo> findByNome(String nome);
 
-    void deleteByNome(String nome);
+
 
 }
